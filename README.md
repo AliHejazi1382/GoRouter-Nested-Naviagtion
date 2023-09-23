@@ -1,16 +1,16 @@
-# stateful_stevdza
+# Nested Navigation Tutorial
 
-A new Flutter project.
+Nested Navigation is one of the most important concept on Flutter.
+In this project I use [GoRouter](https://pub.dev/packages/go_router) package to handle it. GoRouter is a Flutter favorite package that is useful to handling navigation of an app.
 
-## Getting Started
+## Schema
 
-This project is a starting point for a Flutter application.
+The schema of the navigation is like this:
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img width="426" alt="Screenshot 2023-09-17 162107" src="https://github.com/AliHejazi1382/Nested-Navigation/assets/64190439/0ae0bc06-56f7-4eed-ba4d-d3cad1526cc5">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I use some classes to handle state like [StatefulShellRoute](https://pub.dev/documentation/go_router/latest/go_router/StatefulShellRoute-class.html),  [StatefulShellBranch](https://pub.dev/documentation/go_router/latest/go_router/StatefulShellBranch-class.html) and [StatefulNavigationShell](https://pub.dev/documentation/go_router/latest/go_router/StatefulNavigationShell-class.html).
+
+### Copyright
+This project is based on [Stevdza-San](https://www.youtube.com/results?search_query=nested+nav+graph+compose)'s project.

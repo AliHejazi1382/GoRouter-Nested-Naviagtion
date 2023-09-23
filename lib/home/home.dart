@@ -21,10 +21,11 @@ class HomeScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                GoRouter.of(context).push('/details');
+                context.push('/details');
               },
               child: const Text('Detail Screen')
-            )
+            ),
+            const TextField()
           ],
         )
       ),

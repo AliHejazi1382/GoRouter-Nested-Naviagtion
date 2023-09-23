@@ -1,5 +1,4 @@
 
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -100,7 +99,7 @@ final _routes = GoRouter(
           navigatorKey: _detailKey,
           routes: [
             GoRoute(
-              path: '/detail',
+              path: '/details',
               builder: (context, state) =>
                   const InformationScreen(),
               routes: [
@@ -141,7 +140,7 @@ class AuthScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: child,
+      body: navigationShell,
     );
   }
 }
@@ -151,51 +150,28 @@ class HomeScaffold extends StatelessWidget {
 
   final StatefulNavigationShell navigationShell;
 
+  void _onTap(index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-        body: child,
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Settings'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-          currentIndex: _handleCurrentIndex(context),
-          onTap: (index) => _onItemTap(index, context),
-        ),
+        body: navigationShell,
+        bottomNavigationBar: NavigationBar(
+          onDestinationSelected: _onTap,
+          selectedIndex: navigationShell.currentIndex,
+          destinations: const[
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
+          ]
+        )
     );
-  }
-
-  int _handleCurrentIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith('/home')) {
-      return 0;
-    }
-    if (location.startsWith('/settings')) {
-      return 1;
-    }
-    if (location.startsWith('/profile')) {
-      return 2;
-    }
-
-    return 0;
-  }
-
-  void _onItemTap(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        GoRouter.of(context).go('/home');
-        break;
-      case 1:
-        GoRouter.of(context).go('/settings');
-        break;
-      case 2:
-        GoRouter.of(context).go('/profile');
-        break;
-    }
   }
 }
 
@@ -207,7 +183,7 @@ class DetailScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: child,
+      body: navigationShell,
     );
   }
 }
